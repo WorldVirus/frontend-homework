@@ -58,10 +58,10 @@ QUnit.module('Тестируем функцию sorting', function () {
                         const actual = sorting(initial, ['prop1']);
 
                         const expected = [
-                                          {prop1: '1000'},
-                                          {prop1: '200'},
-                                          {prop1: '30'},
                                           {prop1: '4'},
+                                          {prop1: '30'},
+                                          {prop1: '200'},
+                                          {prop1: '1000'},
                                           ];
 
                         assert.deepEqual(actual, expected);
@@ -155,11 +155,6 @@ QUnit.module('Тестируем функцию sorting', function () {
                             });
 
 
-
-
-
-
-
                   QUnit.test('sorting сортирует по третьему полю', function (assert) {
                           const initial = [
                                {prop1: 2, id: 1, id1:2},
@@ -173,13 +168,42 @@ QUnit.module('Тестируем функцию sorting', function () {
 
                           const expected = [
                               {prop1: 1, id: 1, id1:1},
-                              {prop1: 2, id: 2, id1:1},
-                              {prop1: 2, id: 1, id1:2},
                               {prop1: 1, id: 2, id1:3},
+                              {prop1: 2, id: 1, id1:2},
+                              {prop1: 2, id: 2, id1:1},
 
                                               ];
 
                           assert.deepEqual(actual, expected);
                             });
 
-             });
+
+                     QUnit.test('сортирует по алфавиту', function (assert) {
+                      const initial = [
+                                      {prop1: 'Б'},
+                                      {prop1: 'Ё'},
+                                      {prop1: 'в'},
+                                      {prop1: 'а'},
+                                      {prop1: 'я'},
+                                      {prop1: 'ы'},
+                                      {prop1: 'у'},
+
+
+                                        ];
+                      const actual = sorting(initial, ['prop1']);
+
+                      const expected = [
+                                        {prop1: 'а'},
+                                        {prop1: 'Б'},
+                                        {prop1: 'в'},
+                                        {prop1: 'Ё'},
+                                        {prop1: 'у'},
+                                        {prop1: 'ы'},
+                                        {prop1: 'я'},
+
+
+                                        ];
+
+                      assert.deepEqual(actual, expected);
+                        });
+      });
