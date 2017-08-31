@@ -17,24 +17,17 @@ function sorting(initial, propertyArray) {
     }
 
     let alphabetSorter = () => {
-        let firstProperty = propertyArray[0];
-        let collator = new Intl.Collator();
-        function comparator(a, b) {
-            return collator.compare(a, b);
+        function sortComparer(a, b) {
+            return a[firstProperty].localeCompare(b[firstProperty]);
         }
-        let array = [];
+        let firstProperty = propertyArray[0];
         for (let i = 0; i < initial.length; ++i) {
             let bufer = initial[i];
             if (/[a-zа-яё]/i.test(bufer[firstProperty])) {
-                array.push(bufer[firstProperty]);
+                initial.sort(sortComparer);
             } else {
                 return 0;
             }
-        }
-        array.sort(comparator);
-        for (let i = 0; i < initial.length; ++i) {
-            let bufer = initial[i];
-            bufer[firstProperty] = array[i];
         }
         return initial;
     }
